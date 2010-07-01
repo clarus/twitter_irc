@@ -99,7 +99,7 @@ class TwitterReader
   def new_tweets
     handle_twitter_exceptions do
       Twitter::Search.new.from(@login).since(@last_id).collect do |tweet|
-        $log.info("new tweet : #{tweet.text}")
+        $log.info("new tweet ##{tweet.id} : #{tweet.text}")
         @last_id = tweet.id if tweet.id > @last_id
         tweet.text
       end
